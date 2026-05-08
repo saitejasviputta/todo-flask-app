@@ -13,7 +13,3 @@ A simple and clean To-Do web application built using Python (Flask) and HTML/CSS
 - Python (Flask)
 - HTML
 - CSS
-
-## 📸 Screenshots
-
-![App Screenshot](screenshots/app.png)
