@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #7c3aed; /* medium purple */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+    .container {
+    background: #e9d5ff;
+    color: #1e1b4b;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+   button:hover {
+    background: #6d28d9;
+}
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    li {
+    background: #c4b5fd;
+    color: #1e1b4b;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+li:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+
+    .done {
+        text-decoration: line-through;
+        opacity: 0.6;
+    }
+
+    a {
+        margin-left: 10px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .delete {
+        color: #f87171;
+    }
+
+    .complete {
+        color: #4ade80;
+    }
+
+@media (max-width: 500px) {
+    form{
+       flex-direction: column;
+    }
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+    width: 100%;
+}
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    a {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>My To-Do List</h1>
+
+        <form method="POST">
+            <input type="text" name="task" placeholder="Enter task">
+            <button type="submit">Add</button>
+        </form>
+
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <span class="{% if task.done %}done{% endif %}">
+                        {{ task.task }}
+                    </span>
+
+                    <div>
+                        <a class="complete" href="/complete/{{ loop.index0 }}">✔</a>
+                        <a class="delete" href="/delete/{{ loop.index0 }}">🗑️</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
